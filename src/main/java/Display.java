@@ -5,6 +5,7 @@ import java.util.List;
 public class Display extends PApplet {
     private MidiSequenceLoader kickMidiLoader;
     private List<Beat> kicks;
+    private AudioAnalyzer audioAnalyzer;
     private long animationStartTimeMs = 0;
     private long currentTimeMs = 0;
     private long lastBeatTimeMs = -1000;
@@ -32,6 +33,10 @@ public class Display extends PApplet {
             println("  " + kick);
         }
         
+        // Load audio file for volume visualization
+        String audioPath = sketchPath("audio/arpymog_2.wav");
+        audioAnalyzer = new AudioAnalyzer(audioPath);
+        
         animationStartTimeMs = System.currentTimeMillis();
     }
 
@@ -57,6 +62,19 @@ public class Display extends PApplet {
             lastBeatTimeMs = upcomingBeats.get(0).timeMs;
             lastBeatVelocity = upcomingBeats.get(0).velocity;
         }
+        
+        // Get current volume from audio
+        float currentVolume = audioAnalyzer.getAverageVolume(currentTimeMs - 20, currentTimeMs + 20);
+        
+        // Draw volume-responsive circle
+        fill(100, 150, 255);
+        float circleSize = map(currentVolume, 0, 1, 20, 150);
+        ellipse(width / 2, height / 2, circleSize, circleSize);
+        
+        // Draw circle info
+        fill(200);
+        textSize(12);
+        text("Volume: " + String.format("%.2f", currentVolume), 10, 80);
         
         // Draw a triangle that bounces on beats with easing
         fill(255);
