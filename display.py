@@ -124,7 +124,7 @@ def _triangle_points(center: Tuple[float, float], size: float) -> Tuple[Tuple[fl
 def setup():
 	global _start_time
 	size(_width, _height)
-	frame_rate(60)
+	#set_frame_rate(60)
 	no_stroke()
 	_start_time = time.time()
 
