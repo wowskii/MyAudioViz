@@ -1,0 +1,13 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Debug Display",
+            "request": "launch",
+            "mainClass": "Display",
+            "preLaunchTask": "Build Display",
+            "console": "integratedTerminal"
+        }
+    ]
+}

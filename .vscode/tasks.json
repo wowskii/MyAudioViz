@@ -1,0 +1,29 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Build and Run Display",
+            "type": "shell",
+            "command": "gradle",
+            "args": ["run"],
+            "isBackground": false,
+            "presentation": {
+                "reveal": "always"
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "Build Display",
+            "type": "shell",
+            "command": "gradle",
+            "args": ["build"],
+            "isBackground": false,
+            "group": {
+                "kind": "build"
+            }
+        }
+    ]
+}
